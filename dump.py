@@ -1,17 +1,11 @@
 import contextlib
 import csv
-import logging
 
 import more_itertools
 import requests
 from requests.adapters import HTTPAdapter
 from tqdm import tqdm
 from urllib3.util.retry import Retry
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-sh = logging.StreamHandler()
-logger.addHandler(sh)
 
 
 def fetch_isbn_list():
@@ -62,8 +56,6 @@ def main():
             for j in data:
                 writer.writerow(j["summary"])
             progress_bar.update(len(isbn_list))
-
-    logger.info("Complete!")
 
 
 if __name__ == '__main__':
